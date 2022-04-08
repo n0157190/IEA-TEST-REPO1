@@ -12,7 +12,6 @@ print((int(wkday[2])), calendar.day_name[curr_date.weekday()])
 todays_date = date.today()
 thisyear = todays_date.year
 print ("Past 10 years of birthdays: ")
-i = 1
-for i in range(10):
+for i in range(1, 11):
     curr_date = date(thisyear - i, int(wkday[1]), int(wkday[0]))
     print((thisyear - i), calendar.day_name[curr_date.weekday()])
