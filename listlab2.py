@@ -26,10 +26,10 @@ print(""" You have two lists.  You can
         """)
 displist()
 answer = ''
-while answer != '6':
+while answer in '12345':
     answer = input("What would you like to do? 6 to exit: ")
-    if answer not in '12345':
-        break
+    #if answer not in '12345':
+    #    pass
     if int(answer) == 1:
         whichlist = input("Which list do you want to add? (1 or 2): ")
         whatitem = input("What do you want to add to this list?: ")
@@ -66,9 +66,7 @@ while answer != '6':
         else:
             list2.reverse()
             print('New reverse list: ',list2)            
-        
     elif int(answer) == 4:
         displist()
-
     elif int(answer) == 5:
         compareList(list1, list2)
