@@ -1,20 +1,12 @@
-
-
-def fizzbuzz(n):
-    flag = 0
-    if n % 3 == 0 and n % 5 == 0:
-        print ("FizzBuzz")
-        flag = 1
-    if n % 3 == 0 and flag != 1:
-        print ("Fizz")
-        flag = 1
-    if n % 5 == 0 and flag != 1:
-        print("Buzz")
-        flag = 1
-    if flag != 1:
-        print (n)
-    if n == 100:
-        quit()
-    fizzbuzz(n = n +1)
-
-fizzbuzz(1)
+def fizzbuzz(num):
+    """Returns 'fizz' for multiples of 3,
+       'buzz' for multiples of 5,
+       'fizzbuzz' for multiples of both,
+       or returns the number passed."""
+    result = ''
+    if num % 3 == 0:
+        result += 'fizz'
+    if num % 5 == 0:
+        result += 'buzz'
+    result = result or num
+    return result

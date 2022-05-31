@@ -39,7 +39,8 @@ class Calculator(object):
     def showcalc(self):
         for trans in history:
             print(trans)
-            
+        return
+
     def ac():
         self.balance = '0.0'
         return self.balance

@@ -1,25 +1,9 @@
 #!/usr/bin/env python3
 import requests
 import time
-from datetime import date
-from datetime import datetime
+from datetime import date, datetime
 #import base64
-from pprint import pprint
-
-def formattime(h,m,s):
-    if len(h) == 1:
-        hour = '0'+ h
-    else:
-        hour = h
-    if len(m) == 1:
-        minute = '0'+ m
-    else:
-        minute = m
-    if len(s) == 1:
-        second = '0'+ s
-    else:
-        second = s
-    return hour, minute, second    
+from pprint import pprint   
 
 def get_observer_location():
     """Returns the longitude and latitude for the location of this machine.
@@ -29,7 +13,6 @@ def get_observer_location():
     headers = {}
     response = requests.request("GET", url, headers=headers, data=payload)
     data = response.json()
-    #From Atlanta, GA at 8:34 AM on March 25, 2021:
     print('From '+ data['city']+ ' ' + data['region'] + ' at '+ time.strftime('%l:%M%p %Z on %b %d, %Y'))
     return data['lat'], data['lon']
     
@@ -49,8 +32,7 @@ def get_sun_position(latitude, longitude):
     """
     today = date.today()
     now = datetime.now()
-    hour, min, sec = formattime(str(now.hour), str(now.minute), str(now.second))
-    time = hour +':'+ min + ':' + sec
+    time = now.strftime("%H:%M:%S")
     url = 'https://api.astronomyapi.com/api/v2/bodies/positions?latitude='+ str(latitude) +'&longitude='+ str(longitude) + '&elevation=2&from_date='+ str(today) +'&to_date='+ str(today) +'&time='+time
     #print('URL::: ',url)
     payload={}
@@ -62,7 +44,6 @@ def get_sun_position(latitude, longitude):
     data = response.json()
     #print(data.keys())
     for record in data['data']['table']['rows']:
-        #print(record['cells'][0]['position'])
         if record['cells'][0]['id'] == 'sun':
             #pprint(record['cells'][0]['position']['horizonal']['azimuth'])
             azimuth = record['cells'][0]['position']['horizonal']['azimuth']['degrees']
